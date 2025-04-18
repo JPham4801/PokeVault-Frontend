@@ -17,6 +17,7 @@ const NavBar = () => {
         <ul>
           <li><Link to='/'>HOME</Link></li>
           <li><Link to='/binders'>BINDERS</Link></li>
+          <li><Link to="/binders/new-binder">CEATE BINDER</Link></li>
           <li><Link to='/' onClick={handleSignOut}>SIGN OUT</Link></li>
         </ul>
       ) : (

@@ -1,15 +1,17 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router';
 import { UserContext } from './contexts/UserContext';
-import { Routes, Route } from 'react-router';
 
-import NavBar from './components/NavBar/NavBar';
-import SignUpForm from './components/SignUpForm/SignUpForm';
-import SignInForm from './components/SignInForm/SignInForm';
-import Landing from './components/Landing/Landing';
-import Dashboard from './components/Dashboard/Dashboard';
-import BinderList from './components/BinderList/BinderList';
 import BinderDetails from './components/BinderDetails/BinderDetails';
+import BinderList from './components/BinderList/BinderList';
+import Dashboard from './components/Dashboard/Dashboard';
+import Landing from './components/Landing/Landing';
+import NavBar from './components/NavBar/NavBar';
+import SignInForm from './components/SignInForm/SignInForm';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+import BinderForm from './components/BinderForm/BinderForm';
 import * as binderService from './services/binderService';
+
 
 
 const App = () => {
@@ -35,6 +37,7 @@ const App = () => {
             {/* Protected routes (available only to signed-in users) */}
             <Route path='/binders' element={<BinderList binders={binders} />} />
             <Route path='/binders/:binderId' element={<BinderDetails />} />
+            <Route path='/binders/new-binder' element={<BinderForm /> } />
           </>
         ) : (
           <>
