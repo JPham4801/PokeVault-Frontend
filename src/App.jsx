@@ -17,6 +17,7 @@ import * as binderService from './services/binderService';
 const App = () => {
   const { user } = useContext(UserContext);
   const [binders, setBinders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAllBinders = async () => {
@@ -26,6 +27,12 @@ const App = () => {
     };
     if (user) fetchAllBinders();
   }, [user]);
+
+  const handleAddBinder = async (binderFormData) => {
+    const newBinder = await binderService.create(binderFormData);
+    setBinders([newBinder, ...binders]);
+    navigate('/binders');
+  };
   
   return (
     <>
@@ -37,7 +44,7 @@ const App = () => {
             {/* Protected routes (available only to signed-in users) */}
             <Route path='/binders' element={<BinderList binders={binders} />} />
             <Route path='/binders/:binderId' element={<BinderDetails />} />
-            <Route path='/binders/new-binder' element={<BinderForm /> } />
+            <Route path='/binders/new-binder' element={<BinderForm handleAddBinder={handleAddBinder} />} />
           </>
         ) : (
           <>

@@ -13,7 +13,7 @@ const BinderForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('formData', formData);
+    props.handleAddBinder(formData);
   };
 
   return (
